@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;ib.project.service.CustomUserDetailsService&apos; to &apos;CustomUserDetailService&apos;&#x0D;&#x0A;- Original project: &apos;IB_Project_Shell&apos;&#x0D;&#x0A;- Original element: &apos;ib.project.service.CustomUserDetailsService&apos;&#x0D;&#x0A;- Renamed element: &apos;ib.project.service.CustomUserDetailService&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;CustomUserDetailsService&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;ib.project.service{CustomUserDetailsService.java[CustomUserDetailsService" matchStrategy="1" name="CustomUserDetailService" qualified="false" references="true" similarDeclarations="false" stamp="1530094080381" textual="false" version="1.0"/>
+</session>
