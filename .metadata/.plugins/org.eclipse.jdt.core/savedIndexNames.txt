@@ -6,11 +6,13 @@ INDEX VERSION 1.130+E:\ProjekatInformacionaBezbednost\.metadata\.plugins\org.ecl
 1192175391.index
 3868672473.index
 865741978.index
+1773378788.index
+2685573433.index
 438567203.index
 1781637429.index
 1029167009.index
-3511795082.index
 2774346270.index
+3511795082.index
 2546701483.index
 713823955.index
 1450696200.index
@@ -116,8 +118,8 @@ INDEX VERSION 1.130+E:\ProjekatInformacionaBezbednost\.metadata\.plugins\org.ecl
 2093170728.index
 1594905321.index
 1578645779.index
-2152310996.index
 4266396776.index
+4162816925.index
 2864813837.index
 3494036099.index
 3125725795.index

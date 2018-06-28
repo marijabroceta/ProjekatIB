@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,7 +34,7 @@ public class User implements Serializable,UserDetails{
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	
 	@Column(name="email")
 	private String email;
@@ -51,13 +52,13 @@ public class User implements Serializable,UserDetails{
 	@JoinTable(name="user_authority",
 			joinColumns=@JoinColumn(name="user_id",referencedColumnName="id"),
 			inverseJoinColumns = @JoinColumn(name="authority_id",referencedColumnName="id"))
-	private Set<Authority> authorities;
+	private Set<Authority> user_authorities = new HashSet<>();
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -103,17 +104,23 @@ public class User implements Serializable,UserDetails{
 
 	@Override
 	 public Collection<? extends GrantedAuthority> getAuthorities() {
-		 return this.authorities;
+		 return this.user_authorities;
 	 }
+	
+	
 
-	public void setAuthorities(Set<Authority> authorities) {
-		this.authorities = authorities;
+	public Set<Authority> getUser_authorities() {
+		return user_authorities;
+	}
+
+	public void setUser_authorities(Set<Authority> user_authorities) {
+		this.user_authorities = user_authorities;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.email;
 	}
 
 	@JsonIgnore

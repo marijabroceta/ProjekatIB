@@ -1,0 +1,5 @@
+package ib.project.config;
+
+public class WebSecurityConfig {
+
+}

@@ -1,0 +1,5 @@
+package ib.project.dto;
+
+public class UserDTO {
+
+}
