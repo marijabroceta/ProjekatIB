@@ -1,0 +1,37 @@
+$(document).ready(function(){
+
+	get_users();
+
+});
+
+function table_header(){
+	var table = $('#users_table');
+	table.empty();
+	table.append('<tr>'+
+					'<th>Email</th>'+
+					'<th>Certificate</th>'+
+				'</tr>');
+}
+
+function get_users(){
+	var token = localStorage.getItem("token");
+	console.log(token);
+	console.log('http://localhost:8443/api/users');
+	$.ajax({
+		url:'http://localhost:8443/api/users',
+		type: 'GET',
+		dataType:'json',
+		headers: {"Authorization": token},
+		success:function(response){
+			table_header();
+			var table = $('#users_table');
+			for(var i=0; i<response.length; i++) {
+				user = response[i];
+				table.append('<tr class="data">'+
+								'<td>'+user.email+'</td>'+
+								'<td><button class="btn btn-default">Download</button></td>'+
+							'</tr>');
+			}
+		}
+	});
+}

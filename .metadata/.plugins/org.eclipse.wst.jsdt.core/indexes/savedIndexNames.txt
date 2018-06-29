@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+E:\ProjekatInformacionaBezbednost\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3798459676.index
+1993399765.index
+2991581098.index
+4273360885.index
+1673575423.index

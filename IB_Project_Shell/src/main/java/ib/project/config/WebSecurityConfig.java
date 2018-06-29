@@ -66,9 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 //svim korisnicima dopusti da pristupe putanjama /auth/**
                 .antMatchers("/api/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/users").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/users/role/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/users").permitAll()
+                
                 //svaki zahtev mora biti autorizovan
                 .anyRequest().authenticated().and()
                 //presretni svaki zahtev filterom
@@ -97,9 +95,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 "/favicon.ico",
                 "/**/*.html",
                 "/**/*.css",
-                "/**/*.js",
-                "/api/users",
-                "api/users/role/**"
+                "/**/*.js"
+                
                 
             );
 
