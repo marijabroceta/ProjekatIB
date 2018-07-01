@@ -1,0 +1,143 @@
+$(document).ready(function(){
+	
+	var token = localStorage.getItem("token");
+	console.log(token);
+	var logged = null;
+	
+	$.ajax({
+		url: "https://localhost:8443/api/users/logged",
+		type: 'GET',
+		headers: { "Authorization": "Bearer " + token},
+		contentType : "application/json",
+		dataType:'json',
+		crossDomain: true,
+		success : function(response) {
+			console.log("logged" + response);
+			logged = response;
+		},
+		error: function (jqXHR, textStatus, errorThrown) { 
+			console.log(jqXHR.status);
+			console.log(jqXHR);
+			
+		}
+	});
+
+	
+	$.ajax({
+		
+		headers:{"Authorization" :"Bearer " + token,
+			},
+		contentType: 'application/json',
+		type: 'GET',
+		dataType:'json',
+		crossDomain: true,
+		url:'https://localhost:8443/api/users',
+		success:function(response){
+			table_header();
+			var table = $('#users_table');
+			for(var i=0; i<response.length; i++) {
+				user = response[i];
+				console.log(user);
+				table.append('<tr class="data">'+
+								'<td>'+user.email+'</td>'+
+								'<td>'+user.authorities.name+'</td>'+
+								'<td><button class="btn btn-default">Download</button></td>'+
+							'</tr>');
+			}
+		},
+		error: function (jqXHR, textStatus, errorThrown) { 
+			console.log(jqXHR);
+			alert(textStatus);
+		}
+	});
+	
+	
+	$('#add_form').hide();
+	
+	$('#add_user').on('click',function(e){
+		$('#add_form').show();
+		e.preventDefault();
+		return false;
+	});
+	
+	$('#cancel').on('click',function(e){
+		$('#add_form').hide();
+		e.preventDefault();
+		return false;
+	});
+	
+	$('input#submit').on('click',function(e){
+		
+		console.log("submit");
+		var email = $('#email').val().trim();
+		var password = $('#password').val().trim();
+		
+		var data = {
+				'email':email,
+				'password':password
+			}
+			console.log(data);
+		$.ajax({
+				type: 'POST',
+		        contentType: 'application/json',
+		        headers:{"Authorization" :"Bearer " + token,
+		        	"Access-Control-Allow-Origin": "*"},
+		        url: 'https://localhost:8443/api/users/save',
+		        data: JSON.stringify(data),
+		        dataType: 'json',
+		        crossDomain: true,
+				cache: false,
+				processData: false,
+				success:function(response){
+					alert("Created");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR);
+					alert(textStatus);
+				}
+		});
+		e.preventDefault();
+		return false;
+	});
+});
+
+function table_header(){
+	var table = $('#users_table');
+	table.empty();
+	table.append('<tr>'+
+					'<th>Email</th>'+
+					'<th>Role</th>'+
+					'<th>Certificate</th>'+
+				'</tr>');
+}
+
+function get_users(){
+	var token = localStorage.getItem("token");
+	console.log(token);
+	
+
+	
+	$.ajax({
+		
+		headers:{"Authorization" :"Bearer " + token,
+			"Access-Control-Allow-Origin": "https://localhost:8443"},
+		contentType: 'application/json',
+		type: 'GET',
+		dataType:'json',
+		crossDomain: true,
+		url:'https://localhost:8443/api/users',
+		success:function(response){
+			table_header();
+			var table = $('#users_table');
+			for(var i=0; i<response.length; i++) {
+				user = response[i];
+				console.log(user.email);
+				table.append('<tr class="data">'+
+								'<td>'+user.email+'</td>'+
+								'<td><button class="btn btn-default">Download</button></td>'+
+							'</tr>');
+			}
+		}
+	});
+}
+

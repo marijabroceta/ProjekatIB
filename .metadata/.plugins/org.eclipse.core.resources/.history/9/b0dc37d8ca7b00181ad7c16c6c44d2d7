@@ -1,0 +1,52 @@
+$(document).ready(function(){
+
+	get_users();
+
+});
+
+function table_header(){
+	var table = $('#users_table');
+	table.empty();
+	table.append('<tr>'+
+					'<th>Email</th>'+
+					'<th>Certificate</th>'+
+				'</tr>');
+}
+
+function get_users(){
+	var token = localStorage.getItem("token");
+	console.log(token);
+	
+	/*$.ajaxSetup({
+		beforeSend : function(xhr) {
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "/api/users/*");
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
+            
+            console.log(xhr.getResponseHeader("Authorization"));
+        }
+	});*/
+	
+	$.ajax({
+		url:'https://localhost:8443/api/users',
+		headers:{"Authorization" :"Bearer " + token,
+			"Access-Control-Allow-Origin": "/api/users/*"},
+		type: 'GET',
+		dataType:'json',
+		crossDomain: true,
+		
+		success:function(response){
+			table_header();
+			var table = $('#users_table');
+			for(var i=0; i<response.length; i++) {
+				user = response[i];
+				console.log(user.email);
+				table.append('<tr class="data">'+
+								'<td>'+user.email+'</td>'+
+								'<td><button class="btn btn-default">Download</button></td>'+
+							'</tr>');
+			}
+		}
+	});
+}

@@ -23,7 +23,7 @@ import ib.project.service.CustomUserDetailService;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true,proxyTargetClass = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Bean
@@ -66,7 +66,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 //svim korisnicima dopusti da pristupe putanjama /auth/**
                 .antMatchers("/api/auth/**").permitAll()
-                
+                .antMatchers(HttpMethod.POST,"/api/users/save").permitAll()
+                //.antMatchers("/api/users").permitAll()
+                //.antMatchers("/api/users/**").permitAll()
                 //svaki zahtev mora biti autorizovan
                 .anyRequest().authenticated().and()
                 //presretni svaki zahtev filterom
@@ -84,7 +86,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         web.ignoring().antMatchers(
                 HttpMethod.POST,
                 "/auth/login",
-                "/api/users"
+                "/api/users/save"
+                
                 
         );
         web.ignoring().antMatchers(

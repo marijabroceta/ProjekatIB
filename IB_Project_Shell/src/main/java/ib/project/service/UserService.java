@@ -40,6 +40,18 @@ public class UserService implements UserServiceInterface{
 	public User save(User user) {
 		return userRepository.save(user);
 	}
+
+	@Override
+	public List<User> findAllByEmail(String email) {
+		List<User> users = userRepository.findAllByEmail(email);
+		return users;
+	}
+
+	@Override
+	public List<User> findByActiveTrue() {
+		List<User> users = userRepository.findByActiveTrue();
+		return users;
+	}
 	
 	
 }

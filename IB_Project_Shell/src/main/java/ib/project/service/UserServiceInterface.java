@@ -10,6 +10,10 @@ public interface UserServiceInterface {
 	
 	User findByEmail(String email);
 	
+	List<User> findByActiveTrue();
+	
+	List<User> findAllByEmail(String email);
+	
 	List<User> findAll();
 	
 	User save(User user);

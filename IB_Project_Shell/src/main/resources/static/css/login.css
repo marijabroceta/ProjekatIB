@@ -1,4 +1,4 @@
-#login_form{
+#forms{
 	position: absolute;
     top: 20%;
     left: 30%;
@@ -7,6 +7,14 @@
     font-size: 18px;
 }
 
+#add_form{
+	position: absolute;
+    top: 20%;
+    left: 30%;
+    right: 30%;
+    bottom: 20%;
+    font-size: 18px;
+}
 
 
 body {
@@ -31,11 +39,24 @@ label {
  padding-right: 20px;
 }
 
+
+
 br {
  clear: left;
 }
 
 #submit{
 	margin-left: 19%;
+	
+}
+
+#submit_add,#cancel_add{
+	margin-left: 115px;
+}
+
+#add_user{
+	margin-top: 30px;
+	margin-bottom:20px;
+	margin-right: 49%;
 }
 

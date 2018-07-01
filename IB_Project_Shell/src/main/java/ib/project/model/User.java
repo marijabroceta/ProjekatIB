@@ -34,7 +34,7 @@ public class User implements Serializable,UserDetails{
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@Column(name="email")
 	private String email;
@@ -54,11 +54,11 @@ public class User implements Serializable,UserDetails{
 			inverseJoinColumns = @JoinColumn(name="authority_id",referencedColumnName="id"))
 	private Set<Authority> user_authorities = new HashSet<>();
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -97,7 +97,7 @@ public class User implements Serializable,UserDetails{
 
 	@Override
     public boolean isEnabled() {
-        return true;
+        return this.active;
     }
 	
 	

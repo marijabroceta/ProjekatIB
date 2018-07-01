@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;IB_Project_Shell/src/main/resources/static/login.html&apos; to &apos;add_user.html&apos;" description="Rename resource &apos;login.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/static/login.html" name="add_user.html" stamp="1530439284661" updateReferences="true"/>
+</session>

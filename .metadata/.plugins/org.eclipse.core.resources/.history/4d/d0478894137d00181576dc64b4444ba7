@@ -1,0 +1,97 @@
+$(document).ready(function(){
+
+	var submit = $('#submit');
+	$('#add_form').hide();
+	
+	$('#add_user').on('click',function(e){
+		$('#add_form').show();
+		e.preventDefault();
+		return false;
+	});
+	
+	$('#cancel').on('click',function(e){
+		$('#add_form').hide();
+		e.preventDefault();
+		return false;
+	});
+
+	submit.on('click',function(e) {
+		login();
+		
+		e.preventDefault();
+		return false;
+	});
+	
+	$('#submit_add').on('click',function(e){
+		addUser();
+		
+		e.preventDefault();
+		return false;
+	});
+
+});
+
+function login(){
+	var email = $('#email').val().trim();
+	var password = $('#password').val().trim();
+	var token = '';
+
+	var data = {
+		'username':email,
+		'password':password
+	}
+	console.log(data);
+
+	$.ajax({
+		type: 'POST',
+        contentType: 'application/json',
+        url: 'https://localhost:8443/api/auth/login',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        crossDomain: true,
+		cache: false,
+		processData: false,
+		success:function(response){
+			var token = response.access_token;
+			console.log(token);
+			console.log(response);
+			
+			localStorage.setItem("token",token);
+			window.location.href = "main_page.html";
+		},
+		error: function (jqXHR, textStatus, errorThrown) {  
+			alert(textStatus);
+		}
+	});
+}
+
+function addUser(){
+	console.log("submit");
+	var email = $('#email').val().trim();
+	var password = $('#password').val().trim();
+	
+	var data = {
+			'email':email,
+			'password':password
+		}
+		console.log(data);
+		$.ajax({
+				type: 'POST',
+		        contentType: 'application/json',
+		        headers:{"Authorization" :"Bearer " + token,
+		        	"Access-Control-Allow-Origin": "*"},
+		        url: 'https://localhost:8443/api/users/save',
+		        data: JSON.stringify(data),
+		        dataType: 'json',
+		        crossDomain: true,
+				cache: false,
+				processData: false,
+				success:function(response){
+					alert("Created");
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR);
+					alert(textStatus);
+				}
+		});
+}

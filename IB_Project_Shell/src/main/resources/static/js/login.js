@@ -2,13 +2,20 @@ $(document).ready(function(){
 
 	var submit = $('#submit');
 
-	submit.on('click',function(e) {
-		login();
-		window.location.href = "main_page.html";
+	$('#cancel').on('click',function(e){
+		$('#add_form').hide();
 		e.preventDefault();
 		return false;
-	})
+	});
 
+	submit.on('click',function(e) {
+		login();
+		
+		e.preventDefault();
+		return false;
+	});
+	
+	
 });
 
 function login(){
@@ -37,9 +44,11 @@ function login(){
 			console.log(response);
 			
 			localStorage.setItem("token",token);
+			window.location.href = "main_page.html";
 		},
 		error: function (jqXHR, textStatus, errorThrown) {  
 			alert(textStatus);
 		}
 	});
 }
+
